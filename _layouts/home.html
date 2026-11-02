@@ -1,0 +1,26 @@
+---
+layout: default
+---
+<section class="hero">
+  <h1 class="hero-title">{{ site.title }}</h1>
+  <p class="hero-desc">{{ site.description }}</p>
+</section>
+
+{{ content }}
+
+<div class="toolbar">
+  <input class="filter" id="cardFilter" type="search" placeholder="筛选笔记…" aria-label="筛选笔记">
+</div>
+
+<section class="grid" id="cardGrid">
+  {% assign notes = site.pages | sort: "order" %}
+  {% for p in notes %}{% if p.order %}
+  <article class="card" data-title="{{ p.title | downcase }}">
+    <a href="{{ p.url | remove_first: '/' }}">
+      <h2 class="card-title">{{ p.title }}</h2>
+      {% if p.description %}<p class="card-desc">{{ p.description }}</p>{% endif %}
+      <span class="card-meta">{{ p.content | strip_html | strip | size }} 字</span>
+    </a>
+  </article>
+  {% endif %}{% endfor %}
+</section>

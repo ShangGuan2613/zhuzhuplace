@@ -1,3 +1,10 @@
+---
+layout: default
+title: Git 常用命令
+description: 日常 Git 与 GitHub 操作速查
+order: 3
+---
+
 查看当前状态
 git status
 看哪些文件改动了、是否有未提交的内容。

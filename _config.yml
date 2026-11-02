@@ -1,0 +1,16 @@
+title: zhuzhuplace
+description: 我的思考与笔记
+lang: zh-CN
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: true
+  syntax_highlighter: rouge
+
+exclude:
+  - .delta
+  - .gitignore
+  - Gemfile
+  - Gemfile.lock
+  - vendor
