@@ -28,29 +28,45 @@
         </script>
     </head>
     <body>
-        <header class="site-header">
-            <div class="header-inner">
-                <a class="site-title" href="./">{{ site.title }}</a>
-                <nav class="header-nav">
-                    <a href="notes.html">笔记</a>
-                    <button
-                        class="icon-btn"
-                        id="themeToggle"
-                        aria-label="切换主题"
-                    >
-                        ◐
-                    </button>
-                </nav>
-            </div>
-        </header>
+        <aside class="sidebar" id="sidebar">
+            <a class="brand" href="./">
+                <span class="brand-name">{{ site.title }}</span>
+                <span class="brand-desc">{{ site.description }}</span>
+            </a>
+            <nav class="nav">
+                {% assign notes = site.pages | sort: "order" %} {% for p in
+                notes %}{% if p.order %}
+                <a
+                    class="nav-link{% if p.url == page.url %} is-active{% endif %}"
+                    href="{{ p.url | remove_first: '/' }}"
+                    >{{ p.title }}</a
+                >
+                {% endif %}{% endfor %}
+            </nav>
+        </aside>
+        <div class="overlay" id="overlay"></div>
 
-        <main class="content">{{ content }}</main>
+        <div class="main">
+            <header class="topbar">
+                <button class="icon-btn" id="menuToggle" aria-label="打开目录">
+                    ☰
+                </button>
+                <span class="topbar-title"
+                    >{{ page.title | default: site.title }}</span
+                >
+                <button class="icon-btn" id="themeToggle" aria-label="切换主题">
+                    ◐
+                </button>
+            </header>
 
-        <footer class="footer">
-            <span>{{ site.title }}</span>
-            <span class="dot">·</span>
-            <a href="notes.html">笔记</a>
-        </footer>
+            <main class="content">{{ content }}</main>
+
+            <footer class="footer">
+                <span>{{ site.title }}</span>
+                <span class="dot">·</span>
+                <a href="./">首页</a>
+            </footer>
+        </div>
 
         <script src="assets/js/site.js"></script>
     </body>
